@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+
+<h1>福井県観光ハッシュタグ別投稿数推移 on Instagram</h1>
+<select id=selhashtag></select><br>
+<main id=main></main>
+<hr>
+Data: <a href=https://github.com/code4fukui/fukui-kanko-hashtag/>福井県観光ハッシュタグ別投稿数 CSVデータ</a> (<a href=https://github.com/code4fukui/copyright-policy-jp/tree/main/OpenDataStandardTermsofUse>オープンデータ標準利用規約</a>) <a href=https://www.fuku-e.com/>福井県観光連盟</a><br>
+App: <a href=https://github.com/code4fukui/fukui-kanko-hashtag/>src on GitHub</a><br>
+
+<script type="module">
+import { ChartLine } from "https://js.sabae.cc/Chart.js";
+import { CSV } from "https://js.sabae.cc/CSV.js";
+import { addComma } from "https://js.sabae.cc/addComma.js";
+
+const fns = [
+  "hashtag_202204.csv",
+  "hashtag_202205.csv",
+  "hashtag_202206.csv",
+  "hashtag_202207.csv",
+  "hashtag_202208.csv",
+];
+
+const hashtags = {};
+for (const fn of fns) {
+  const data = await CSV.fetchJSON(fn);
+  for (const d of data) {
+    const hashtag = d.hashtag;
+    const cnts = (() => {
+      const h = hashtags[hashtag];
+      if (h) {
+        return h;
+      }
+      return hashtags[hashtag] = [];
+    })();
+    for (const name in d) {
+      if (name == "hashtag") {
+        continue;
+      }
+      const value = parseInt(d[name]);
+      cnts.push({ name: name.substring(5), value });
+    }
+  }
+}
+//console.log(hashtags);
+for (const name in hashtags) {
+  const data = hashtags[name];
+  const sum = data.reduce((pre, cur) => pre + cur.value, 0);
+  if (sum < 100) {
+    console.log("skip", name);
+    continue;
+  }
+  const opt = document.createElement("option");
+  opt.textContent = name + " (" + addComma(sum) + "件)";
+  opt.value = name;
+  selhashtag.appendChild(opt);
+}
+
+const show = () => {
+  const showhashtag = selhashtag.value; // "#私の好きな福井県2022春夏";
+  const data = hashtags[showhashtag]
+  const chart = new ChartLine(data);
+  chart.style.width = "1500px";
+  chart.style.height = "500px";
+  main.innerHTML = "";
+  main.appendChild(chart);
+};
+show();
+
+selhashtag.onchange = () => show();
+
+</script>
