@@ -1,5 +1,7 @@
 # fukui-kanko-hashtag
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 This project tracks the number of Instagram posts with various hashtags related to tourism in Fukui Prefecture, Japan.
 
 ## Demo
