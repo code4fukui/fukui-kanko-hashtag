@@ -16,4 +16,4 @@ The demo is available at https://code4fukui.github.io/fukui-kanko-hashtag/
 The data is sourced from CSV files in the repository, which are generated from the Instagram hashtag data.
 
 ## License
-This project is licensed under the Open Data Standard Terms of Use, as described in the LICENSE.md file.
+This project is licensed under the Open Data Standard Terms of Use, as described in the [LICENSE.md](LICENSE.md) file.
