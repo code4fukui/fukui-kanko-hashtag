@@ -4,7 +4,7 @@
 
 ## デモ
 
-**https://code4fukui.github.io/fukui-kanko-hashtag/**
+**https://github.com/code4fukui/fukui-kanko-hashtag
 
 デモでは、2022年4月から8月までの投稿トレンドをインタラクティブな折れ線グラフで表示します。ドロップダウンメニューからハッシュタグを選択すると、グラフが更新されます。
 

@@ -6,7 +6,7 @@ A web application that visualizes the daily post counts for tourism-related Inst
 
 ## Demo
 
-**https://code4fukui.github.io/fukui-kanko-hashtag/**
+**https://github.com/code4fukui/fukui-kanko-hashtag
 
 The demo presents an interactive line chart showing post trends from April to August 2022. Users can select a hashtag from the dropdown menu to update the chart.
 
